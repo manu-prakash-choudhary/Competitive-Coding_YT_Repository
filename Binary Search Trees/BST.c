@@ -30,7 +30,7 @@ void insert_value(int value){
             if (temp->left == NULL)
             {
                 temp->left = newNode;
-                printf("%d <-- Value inserted succsesfully\n", value);
+                // printf("%d <-- Value inserted succsesfully\n", value);
                 return;
             }
             temp = temp->left;
@@ -40,7 +40,7 @@ void insert_value(int value){
             if (temp->right == NULL)
             {
                 temp->right = newNode;
-                printf("%d <-- Value inserted succsesfully\n", value);
+                // printf("%d <-- Value inserted succsesfully\n", value);
                 return;
             }
             temp = temp->right;
@@ -51,23 +51,54 @@ void insert_value(int value){
         }
     }
     
+}
 
-
-    
+void inorder_traversal(struct node* curr){
+    // base condition
+    if(curr == NULL){
+        return;
+    }
+    inorder_traversal(curr->left);
+    printf("%d  ",curr->data);
+    inorder_traversal(curr->right);
 }
 
 
+void preorder_traversal(struct node* curr){
+    if(curr == NULL){
+        return;
+    }
+
+    printf("%d ", curr->data);
+    preorder_traversal(curr->left);
+    preorder_traversal(curr->right);
+}
+
+void postorder_traversal(struct node* curr){
+    if(curr == NULL){
+        return;
+    }
+    postorder_traversal(curr->left);
+    postorder_traversal(curr->right);
+    printf("%d ", curr->data);
+}
 
 
 int main()
 {
-    int arr[7] = {60, 40, 55, 75, 80, 70, 35, };
-    // create a node with the value passed by user -> insert that node into BST
-    insert_value(60);
-    insert_value(40);
-    insert_value(55);
-    insert_value(75);
-    insert_value(80);
-    insert_value(70);
-    insert_value(35);
+    int arr[7] = {60, 40, 55, 75, 80, 70, 35,};
+
+    for (int i = 0; i < 7;i++){
+        insert_value(arr[i]);
+    }
+    
+    //Inorder Traversal
+    inorder_traversal(Root);
+    printf("<--Inorder Traversal\n");
+
+    preorder_traversal(Root);
+    printf("<--preorder Traversal\n");
+
+    postorder_traversal(Root);
+    printf("<--postorder Traversal\n");
 }
