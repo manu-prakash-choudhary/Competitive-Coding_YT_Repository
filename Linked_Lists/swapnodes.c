@@ -3,24 +3,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct node
+struct ListNode
 {
     int data;
-    struct node *next;
+    struct ListNode *next;
 };
 
-struct node *createNode(int value)
+struct ListNode *createNode(int value)
 {
-    struct node *newNode = (struct node *)malloc(sizeof(struct node));
+    struct ListNode *newNode = (struct ListNode *)malloc(sizeof(struct ListNode));
     newNode->data = value;
     newNode->next = NULL;
     return newNode;
 }
-void swapnodes(struct node* head){
+void swapnodes(struct ListNode* head){
 
-    struct node* curr = head;
-    struct node *prev = NULL;
-    struct node *Next = curr->next;
+    struct ListNode* curr = head;
+    struct ListNode *prev = NULL;
+    struct ListNode *Next = curr->next;
 
     head = head->next;
 
@@ -36,7 +36,10 @@ void swapnodes(struct node* head){
         // responsible for selecting next pair
         prev = curr;
         curr = curr->next;
-        Next = curr->next;
+        if(curr!=NULL){
+            Next = curr->next;
+        }
+        
     }
 
 
@@ -50,7 +53,7 @@ void swapnodes(struct node* head){
 }
 int main()
 {
-    struct node *LL;
+    struct ListNode *LL;
     LL = createNode(1);
     LL->next = createNode(2);
     LL->next->next = createNode(3);
