@@ -83,6 +83,25 @@ void postorder_traversal(struct node* curr){
     printf("%d ", curr->data);
 }
 
+int search(struct node* root, int key){
+    if(root == NULL){
+        return 0;
+    }
+    struct node *curr = root;
+    while(curr!=NULL){
+        if(curr->data == key){
+            return 1;
+        }
+        else if(key > curr->data){
+            curr = curr->right;
+        }
+        else if(key < curr->data){
+            curr = curr->left;
+        }
+    }
+
+    return 0;
+}
 
 int main()
 {
@@ -92,13 +111,27 @@ int main()
         insert_value(arr[i]);
     }
     
-    //Inorder Traversal
-    inorder_traversal(Root);
-    printf("<--Inorder Traversal\n");
+    
+    // searching a particular in our BST
+    int key = 28;
+    int res = search(Root, key);
+    if (res == 1)
+    {
+        printf("Key %d Found in the BST", key);
+    }
+    else
+    {
+        printf("Key %d not Found in the BST", key);
+    }
 
-    preorder_traversal(Root);
-    printf("<--preorder Traversal\n");
+    
+    // //Inorder Traversal
+    // inorder_traversal(Root);
+    // printf("<--Inorder Traversal\n");
 
-    postorder_traversal(Root);
-    printf("<--postorder Traversal\n");
+    // preorder_traversal(Root);
+    // printf("<--preorder Traversal\n");
+
+    // postorder_traversal(Root);
+    // printf("<--postorder Traversal\n");
 }
