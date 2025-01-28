@@ -59,7 +59,7 @@ void inorder_traversal(struct node* curr){
         return;
     }
     inorder_traversal(curr->left);
-    printf("%d  ",curr->data);
+    printf("%d ",curr->data);
     inorder_traversal(curr->right);
 }
 
@@ -103,6 +103,30 @@ int search(struct node* root, int key){
     return 0;
 }
 
+void BFS(struct node* root){
+    if(root == NULL){
+        return;
+    }
+    
+    struct node* que[100];
+    int front = 0;
+    int rear = 0;
+    que[rear] = root;
+
+    while(front<=rear){
+        struct node *curr = que[front++];
+        printf("%d ", curr->data);
+        if(curr->left != NULL){
+            que[++rear] = curr->left;
+        }
+        if(curr->right != NULL){
+            que[++rear] = curr->right;
+        }
+    }
+
+}
+
+
 int main()
 {
     int arr[7] = {60, 40, 55, 75, 80, 70, 35,};
@@ -110,28 +134,32 @@ int main()
     for (int i = 0; i < 7;i++){
         insert_value(arr[i]);
     }
-    
-    
-    // searching a particular in our BST
+
+    printf("Breadth_first_traversal of the given tree is: ");
+    BFS(Root);
+    printf("\n");
+
+    // searching a particular value in our BST
     int key = 28;
     int res = search(Root, key);
     if (res == 1)
     {
-        printf("Key %d Found in the BST", key);
+        printf("Key %d Found in the BST\n", key);
     }
     else
     {
-        printf("Key %d not Found in the BST", key);
+        printf("Key %d not Found in the BST\n", key);
     }
 
-    
-    // //Inorder Traversal
-    // inorder_traversal(Root);
-    // printf("<--Inorder Traversal\n");
 
-    // preorder_traversal(Root);
-    // printf("<--preorder Traversal\n");
 
-    // postorder_traversal(Root);
-    // printf("<--postorder Traversal\n");
+    //Inorder Traversal
+    inorder_traversal(Root);
+    printf("<--Inorder Traversal\n");
+
+    preorder_traversal(Root);
+    printf("<--preorder Traversal\n");
+
+    postorder_traversal(Root);
+    printf("<--postorder Traversal\n");
 }
